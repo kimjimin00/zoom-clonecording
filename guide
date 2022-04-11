@@ -1,5 +1,11 @@
 Java Script 이용
 P2P, WebRTC를 활용한 유저 간 화상통신
-웹소켓을 활용한 채팅방 생성, 개인 메시지 기능 등 구현
-프론트엔드->바닐라JS
-벡엔드->ExpressJS, app.get(), Pug, (req, res)
+Web socket을 활용한 채팅방 생성, 개인 메시지 기능 등 구현
+
+#프론트엔드->바닐라JS
+#벡엔드->ExpressJS, app.get(), Pug, (req, res)
+
+#0 INTRODUCTION
+#1 CHAT WITH WEBSOCKETS
+#2 SOCKETIO
+#3 VIDEO CALL
