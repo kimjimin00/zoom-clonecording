@@ -1,0 +1,63 @@
+#1 CHAT WITH WEBSOCKETS
+
+#1-1 HTTP vs WebSocket
+
+♣HTTP Protocol : stateless(req, res 후에 서버는 잊는다)
+->실시간 방식이 될 수 없음(서버는 request를 기다려야 하고 
+req를 받은 뒤에만 응답할 수 있다.
+
+♣WebSocket(wss, ws)
+->양방향 연결(bi-directional connection) 후에는 서버가 기억할 수 있다. 
+->서버(backend)가 유저에게 메시지를 보낼 수도 있다.
+
+1.==실행==
+ws: a Node.js WebSocket library
+ws(core)를 사용한 framework가 있음, 거기에는 이미 채팅방 기능이 있음
+
+npm i ws...
+<<server.js>>
+express는 ws를 지원안함.
+같은 서버에서 http, webSocket 둘다 작동시켰음 //ws만 만들어도 되었다.
+->localhost는 동일한 포트3000에서 둘 다 실행되도록 하기 위해서 그렇게 하였다.
+http 서버 위에 webSocket 서버를 만들 수 있도록 한것임
+
+/*const handleListen = () => console.log('Listening on http://localhost:3000');
+
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
+
+server.listen(3000, handleListen);
+*/
+
+***http를 사용한 이유는 views, static files, home, redirection을 원하기 때문
+2.==ws가 준비되었음==
+<<app.js>>(frontend)
+webSocket에도 event가 있고, event가 발동될 때 사용할 function을 만들면 된다.
+->frontend에서 backend로 연결해야 한다.
+->방법: var aWebSocket = new WebSocket(url [, protocols]);
+
+***양방향적!!
+브라우저의 연결이 끊기면, 서버에 event를 발생시키고,
+서버가 오프라인이 되면, 브라우저한테 알려준다.
+app.js : socket.send()-->front가 back에 !!
+server.js : socket.send()-->back가 front에 !!
+
+#1-6. Chat Completed
+wss api(API : Application Programming Interface)
+-> 운영체제와 응용프로그램 사이의 통신에 사용되는 언어나 메시지 형식을 말한다.
+
+*브라우저 , 브라우저 간 통신이 가능하도록 하는 것
+->const sockets = [];
+(message) => {
+        sockets.forEach(aSocket => aSocket.send(message.toString('utf8')));
+를 이용
+
+*닉네임을 서버에 저장
+->서버가 message type을 message chat, nickname으로 구별하도록 함
+->브라우저에서는 메시지를 object에서 string로 바꾸어 서버로 보내고, 
+서버에서는 메시지를 string에서 object으로 바꿔줘야 함.
+-->function makeMessage(){}
+
+ JSON.stringify : JavaScript object->string
+ JSON.parse : string-> JS object
+ 
