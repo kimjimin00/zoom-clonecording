@@ -6,4 +6,6 @@
 ->모든 platform, 모든 브라우저, 디바이스에 이용 가능하고, 신뢰성과 속도를 제공
   != webSocket : webSocket는 socket io 방식 중 하나
   socket IO는 websocket가 지원되지 않는 경우 다른 것을 사용한다.
-
+  
+=Notion= 
+https://www.notion.so/2-SOCKETIO-1b8677b1916b4f1893e187bdb380dcfc
